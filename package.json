@@ -14,6 +14,8 @@
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "openai": "^4.0.0"
+    "axios": "^1.6.7",
+    "install": "^0.13.0",
+    "openai": "^4.28.4"
   }
 }

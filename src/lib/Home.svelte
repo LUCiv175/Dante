@@ -90,6 +90,7 @@
     left: -60px;
     rotate: 35deg;
     height: 300px;
+    filter: contrast(1);
   }
 
 
@@ -106,6 +107,7 @@
       bottom: -30px;
       left: -30px;
     }
+    
   }
   @media (max-width: 300px) {
     .hero{

@@ -1,13 +1,15 @@
 <script>
-  import Dante from "./lib/Dante.svelte";
+  import Chat from "./lib/Chat.svelte";
+import Dante from "./lib/Dante.svelte";
 import Home from "./lib/Home.svelte";
   import {store} from "./script/stores.js";
 
   //$: valore = $store.val;
-  $: valore = 1;
+  $: valore = 2;
 </script>
 
 <style>
+  
   
   :global(body){
     margin: 0;
@@ -21,4 +23,6 @@ import Home from "./lib/Home.svelte";
   <Home />
 {:else if valore == 1}
   <Dante />
+{:else if valore==2}
+<Chat/>
 {/if}

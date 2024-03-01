@@ -1,5 +1,6 @@
 <script>
   
+  $: w = window.innerWidth
 </script>
 
 <style>
@@ -51,7 +52,7 @@
     margin: auto;
   }
   
-  .hero img {
+  .hero img, .logo img {
     height: 27vh;
     margin-bottom: 10px;
     filter: brightness(1000%);
@@ -95,6 +96,24 @@
     outline: none;
   }
 
+  .chat{
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    padding: 0 20px;
+    flex-direction: column;
+    background-color: #1e1e1eea;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 25vh;
+    border-radius: 40px;
+  }
+  .chat-content{
+    margin-bottom: 2vh;
+  }
 
   
   @media (max-width: 1000px) {
@@ -112,9 +131,15 @@
         #input{
             width: 70vw;
         }}
+
   
 </style>
+    {#if w > 768}
     <img src="https://wallpapers.com/images/hd/hell-2000-x-1000-2fiwna66nj94tx3x.jpg" alt="sfondo" id="bg">
+    {:else}
+    <img src="https://i.pinimg.com/originals/93/34/3b/93343b02897a08532627c6a815a74acc.jpg" alt="sfondo" id="bg">
+    {/if}
+
   <div class="hero">
     <div class="hero-content">
         <img src="dante logo 2.png" alt="logo">
