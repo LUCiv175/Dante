@@ -1,5 +1,9 @@
 <script>
-  
+  import { store } from "../script/stores";
+
+  const goToChat = () => {
+    $store.val = 1;
+  }
 </script>
 
 <style>
@@ -122,7 +126,7 @@
       <img src="dante logo 2.png" alt="logo">
       <p>Se l'intelligenza artificiale può svelare il mistero dell'Inferno, allora l'umanità può ascendere al Paradiso.</p>
       <div>
-      <button class="primary">Raccontami</button></div>
+      <button class="primary" on:click={goToChat}>Raccontami</button></div>
       <div><button class="secondary">Entra nella Biblioteca</button></div>
     </div>
     

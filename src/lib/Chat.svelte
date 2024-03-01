@@ -3,21 +3,28 @@
     import { fly } from 'svelte/transition';
   import Message from "./Message.svelte";
   import OpenAI from "openai";
+  import { store } from "../script/stores";
 
   $: w = window.innerWidth
   $: mymessage = "";
   $: console.log(allchat)
   const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '',
     dangerouslyAllowBrowser: true
   });
   
   export let allchat = [];
   let thid;
   const load = async () => {
-    const thread = (await openai.beta.threads.create());
+    const thread = await openai.beta.threads.create();
     thid = thread.id
+    mymessage = $store.request;
+    btnsend3();
 
+  }
+
+  export const turnBack = () => {
+    $store.val = 1;
   }
 
   export const btnsend3 = async () => {
@@ -194,12 +201,13 @@ allchat = [...allchat, { role: 'bot', text: chatbotMessage }];
 }
 .back{
         position: absolute;
-        width: 50px;
+        width: 70px;
         top: 0;
         left: 0;
         margin: 2%;
         cursor: pointer;
         filter: brightness(1000%);
+        z-index: 1000;
       }
 
   @media (max-width: 2100px) {
@@ -235,11 +243,16 @@ allchat = [...allchat, { role: 'bot', text: chatbotMessage }];
         #input{
             width: 70vw;
             font-size: 0.75rem;
-        }}
-
+        }
+        .back{
+            width: 50px;
+            margin: 5%;
+        }
+      }
+        
   
 </style>
-<img src="back.png" alt="back" class="back">
+<img src="back.png" alt="back" class="back" on:click={turnBack}>
 {#if w > 768}
     <img src="https://wallpapers.com/images/hd/hell-2000-x-1000-2fiwna66nj94tx3x.jpg" alt="sfondo" id="bg">
     {:else}

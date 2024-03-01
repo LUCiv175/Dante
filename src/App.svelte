@@ -4,8 +4,7 @@ import Dante from "./lib/Dante.svelte";
 import Home from "./lib/Home.svelte";
   import {store} from "./script/stores.js";
 
-  //$: valore = $store.val;
-  $: valore = 2;
+  $: valore = $store.val;
 </script>
 
 <style>

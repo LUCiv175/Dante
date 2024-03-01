@@ -1,4 +1,16 @@
 <script>
+  import { store } from "../script/stores";
+
+  $: r = "";
+
+
+  const send = () => {
+    $store.request = r;
+    $store.val = 2;
+  }
+  export const turnBack = () => {
+    $store.val = 0;
+  }
   
   $: w = window.innerWidth
 </script>
@@ -8,6 +20,17 @@
   @import url('https://fonts.googleapis.com/css2?family=Ingrid+Darling&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Ingrid+Darling&family=Inter:wght@100..900&display=swap');
   
+
+  .back{
+        position: absolute;
+        width: 70px;
+        top: 0;
+        left: 0;
+        margin: 2%;
+        cursor: pointer;
+        filter: brightness(1000%);
+        z-index: 1000;
+      }
   /* Hero Section Styles */
   :global(.danger){
     background-color: #FF1B1C;
@@ -130,10 +153,13 @@
     @media (max-width: 500px) {
         #input{
             width: 70vw;
-        }}
-
+        }.back{
+          width: 50px;
+          margin: 5%;
+      }}
   
 </style>
+<img src="back.png" alt="back" class="back" on:click={turnBack}>
     {#if w > 768}
     <img src="https://wallpapers.com/images/hd/hell-2000-x-1000-2fiwna66nj94tx3x.jpg" alt="sfondo" id="bg">
     {:else}
@@ -144,7 +170,7 @@
     <div class="hero-content">
         <img src="dante logo 2.png" alt="logo">
         <p>Parla con Me</p>
-        <input type="text" id="input" placeholder="">
-        <button class="danger">Invia</button>
+        <input type="text" id="input" placeholder="Scrivimi" bind:value={r}>
+        <button class="danger" on:click={send}>Invia</button>
     </div>
   </div>

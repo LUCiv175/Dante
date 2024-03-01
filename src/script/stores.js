@@ -1,7 +1,8 @@
 import { writable } from "svelte/store";
 
 const newStore = {
-    val: 0
+    val: 0,
+    r: ""
 }
 
 function createStore() {
