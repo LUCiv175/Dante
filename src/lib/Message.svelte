@@ -1,6 +1,10 @@
 <script>
+    import { scale, slide } from "svelte/transition";
+
     export let sender;
     export let tt;
+    let s = sender=="user" ? "You:" : "Dante:";
+    let clas = sender=="user" ? "user" : "chat";
 </script>
 
 <style>
@@ -65,16 +69,6 @@
 
 </style>
 
-{#if sender=="user"}
-<div class="user">
-    <p>You:</p><span >{tt}</span>
-    
+<div class={clas} in:slide={{delay:500, duration:350}} out:slide={{duration:350}}>
+    <p>{s}</p><span>{tt}</span>
 </div>
-{:else if sender=="bot"}
-<div class="chat" >
-    <p>Dante:</p><span>{tt}</span>
-    
-</div>
-{:else}
-<p>Error!</p>
-{/if}

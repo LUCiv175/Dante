@@ -1,4 +1,5 @@
 <script>
+    import { blur, scale, slide } from "svelte/transition";
   import { store } from "../script/stores";
 
   const goToChat = () => {
@@ -121,7 +122,7 @@
   }
 </style>
 
-  <div class="hero">
+  <div class="hero" in:blur={{delay:400, duration:350}} out:blur={{duration:300}}>
     <div class="hero-content">
       <img src="dante logo 2.png" alt="logo">
       <p>Se l'intelligenza artificiale può svelare il mistero dell'Inferno, allora l'umanità può ascendere al Paradiso.</p>
@@ -130,5 +131,5 @@
       <div><button class="secondary">Entra nella Biblioteca</button></div>
     </div>
     
-  </div><img src="devil.png" alt="devil" id="devil">
+  </div><img src="devil.png" alt="devil" id="devil" in:scale={{delay:400, duration:350}} out:blur={{duration:500}}>
 

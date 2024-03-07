@@ -5,6 +5,7 @@ import Home from "./lib/Home.svelte";
   import {store} from "./script/stores.js";
 
   $: valore = $store.val;
+  //$: valore = 2
 </script>
 
 <style>

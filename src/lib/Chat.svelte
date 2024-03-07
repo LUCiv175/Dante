@@ -1,15 +1,16 @@
 <script>
-    import { scale } from "svelte/transition";
+    import { blur, scale, slide } from "svelte/transition";
     import { fly } from 'svelte/transition';
   import Message from "./Message.svelte";
   import OpenAI from "openai";
   import { store } from "../script/stores";
+    import Loading from "./Loading.svelte";
 
   $: w = window.innerWidth
   $: mymessage = "";
-  $: console.log(allchat)
+  $: pino = 1;
   const openai = new OpenAI({
-    apiKey: '',
+    apiKey: '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',
     dangerouslyAllowBrowser: true
   });
   
@@ -33,7 +34,7 @@
   mymessage = '';
   if (userMessage !== '') {
     allchat = [...allchat, { role: 'user', text: userMessage }];
-    
+    pino = 1;
     const message = await openai.beta.threads.messages.create(
         thid,
         { role: "user", content: userMessage}
@@ -59,8 +60,7 @@
 
     // Estrai il testo del messaggio
     const chatbotMessage = messages.data[0].content[0].text.value;
-    console.log(messages.data[0].content[0])
-
+    pino = 0;
 // Aggiungi il messaggio correttamente all'array allchat
 allchat = [...allchat, { role: 'bot', text: chatbotMessage }];
 
@@ -144,6 +144,7 @@ allchat = [...allchat, { role: 'bot', text: chatbotMessage }];
     z-index: -1;
     object-fit: cover;
   }
+  
 
   #input{
     border-radius: 10px;
@@ -259,17 +260,20 @@ allchat = [...allchat, { role: 'bot', text: chatbotMessage }];
     <img src="https://i.pinimg.com/originals/93/34/3b/93343b02897a08532627c6a815a74acc.jpg" alt="sfondo" id="bg">
     {/if}
 
-<div class="chat">
+<div class="chat"in:blur={{delay:725, duration:350}} out:blur>
     <div class="logo">
       <img src="dante logo 2.png" alt="logo">
     </div>
-    <div class="chat-content">
+    <div class="chat-content" >
     {#each allchat as res_msg}
     <Message sender={res_msg.role} tt={res_msg.text}/>
 
   {/each}
+  {#if pino==1}
+  <Loading/>
+  {/if}
     </div>
     <div>
-    <input type="text" id="input" placeholder="Inserisci il testo" bind:value={mymessage}>
-    <button class="danger" id="send" on:click={btnsend3}>Invia</button></div>
+    <input type="text" id="input" placeholder="Inserisci il testo" bind:value={mymessage} in:blur={{delay:850, duration:350}} out:blur={{duration:350}}>
+    <button class="danger" id="send" on:click={btnsend3} in:slide={{delay:1000, duration:350}} out:slide={{duration:350}}>Invia</button></div>
   </div>

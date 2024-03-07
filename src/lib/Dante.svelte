@@ -1,4 +1,5 @@
 <script>
+    import { blur, slide } from "svelte/transition";
   import { store } from "../script/stores";
 
   $: r = "";
@@ -159,15 +160,15 @@
       }}
   
 </style>
-<img src="back.png" alt="back" class="back" on:click={turnBack}>
+<img src="back.png" alt="back" class="back" on:click={turnBack} in:slide={{delay:200, duration:350}} out:slide={{duration:350}}>
     {#if w > 768}
-    <img src="https://wallpapers.com/images/hd/hell-2000-x-1000-2fiwna66nj94tx3x.jpg" alt="sfondo" id="bg">
+    <img src="https://wallpapers.com/images/hd/hell-2000-x-1000-2fiwna66nj94tx3x.jpg" alt="sfondo" id="bg" in:slide={{delay:650, duration:350}} out:blur={{duration:350}}>
     {:else}
-    <img src="https://i.pinimg.com/originals/93/34/3b/93343b02897a08532627c6a815a74acc.jpg" alt="sfondo" id="bg">
+    <img src="https://i.pinimg.com/originals/93/34/3b/93343b02897a08532627c6a815a74acc.jpg" alt="sfondo" id="bg" in:blur={{delay:650, duration:350}} out:blur={{duration:350}}>
     {/if}
 
-  <div class="hero">
-    <div class="hero-content">
+  <div class="hero" in:blur={{delay:550, duration:350}} out:blur={{duration:350}}>
+    <div class="hero-content" >
         <img src="dante logo 2.png" alt="logo">
         <p>Parla con Me</p>
         <input type="text" id="input" placeholder="Scrivimi" bind:value={r}>
