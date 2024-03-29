@@ -5,6 +5,9 @@
   const goToChat = () => {
     $store.val = 1;
   }
+  const goToList = () => {
+    $store.val = 3;
+  }
 </script>
 
 <style>
@@ -128,7 +131,7 @@
       <p>Se l'intelligenza artificiale può svelare il mistero dell'Inferno, allora l'umanità può ascendere al Paradiso.</p>
       <div>
       <button class="primary" on:click={goToChat}>Raccontami</button></div>
-      <div><button class="secondary">Entra nella Biblioteca</button></div>
+      <div><button class="secondary" on:click={goToList}>Entra nella Biblioteca</button></div>
     </div>
     
   </div><img src="devil.png" alt="devil" id="devil" in:scale={{delay:400, duration:350}} out:blur={{duration:500}}>

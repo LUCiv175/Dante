@@ -2,6 +2,7 @@
   import Chat from "./lib/Chat.svelte";
 import Dante from "./lib/Dante.svelte";
 import Home from "./lib/Home.svelte";
+import List from "./lib/list.svelte";
   import {store} from "./script/stores.js";
 
   $: valore = $store.val;
@@ -25,4 +26,6 @@ import Home from "./lib/Home.svelte";
   <Dante />
 {:else if valore==2}
 <Chat/>
+{:else if valore==3}
+<List/>
 {/if}
