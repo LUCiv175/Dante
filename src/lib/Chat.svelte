@@ -10,7 +10,7 @@
   $: mymessage = "";
   $: pino = 1;
   const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '',
     dangerouslyAllowBrowser: true
   });
   
