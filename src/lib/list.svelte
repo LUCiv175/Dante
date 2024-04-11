@@ -6,12 +6,22 @@
   import SelectGenere from "./SelectGenere.svelte";
 
   $: elenco = [];
+  $: ricerca = "";
   $: t = $store.type;
+  let final = false
+  $:if(ricerca != "") {
+    final = true
+    fetchQuestions()
+  }
+  $:if(final && ricerca == "") {
+    final = false
+    fetchQuestions()
+  }
   let p = 0;
   let l = 0;
   let filter = [];
-  $:console.log(t)
-  $: console.log($store.array)
+  //$:console.log(t)
+  //$: console.log($store.array)
   $: if(t!=l || p==0){
     fetchQuestions()
     l = t;
@@ -40,7 +50,8 @@
 			},
 			body: JSON.stringify({
 				type: t,
-        filter: filter
+        filter: filter,
+        ricerca: ricerca
 			})
 		})
 			.then((res) => {
@@ -52,8 +63,10 @@
 			})
 			.then((data) => {
 				// Gestisci la risposta JSON qui
+        //console.log("ciao")
+        //console.log(data);
 				if (data.status == 1) {
-          console.log(data.data);
+          $store.array = data.data;
 				} else currentError = data.message;
 
 				//goto('/');
@@ -111,6 +124,12 @@ font-style: normal;
 color: #FF9F1C;
 margin-bottom: 10vh;
 }
+.filter{
+  display: flex;
+  justify-content:flex-start;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
 
 @media screen and (max-width: 1500px) {
   .cards{
@@ -147,10 +166,14 @@ margin-bottom: 10vh;
 <div class="hero">
   <img src="dante logo 2.png" alt="logo">
   <p>Catalogo</p>
-  <div>
-  <OrderBy/></div>
-  <div>
+  <div class="filter">
+    <div style="margin-right: 50px;">
+    <OrderBy/></div><div>
     <SelectGenere/></div>
+  </div>
+    <div>
+      <input type="text" placeholder="Cerca..." bind:value={ricerca}/>
+    </div>
   
     {#if $store.array == undefined}
     <div style="height: 70vh; overflow:hidden">

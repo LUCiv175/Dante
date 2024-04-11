@@ -26,8 +26,10 @@
   }
   fetchQuestions();
   </script>
+  <style>
+  </style>
   {#if generi.length > 0}
-  <MultiSelect id="languages" options={nomi} placeholder="Filtra per Genere" on:change={(event) => {
+  <MultiSelect id="Generi" options={nomi} placeholder="Filtra per Genere" style="width: 30vw; max-height:50px" on:change={(event) => {
     event.detail.type
     event.detail.option
     if (event.detail.type === 'add') {
