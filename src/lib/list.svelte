@@ -82,6 +82,12 @@
 </script>
 
 <style>
+  *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
  
   .hero {
   position: relative;
@@ -103,9 +109,10 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 5px;
       row-gap: 50px;
-  margin: 2vh;
-  margin-bottom: 2;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
+
 
 
 .hero img {
@@ -126,9 +133,20 @@ margin-bottom: 10vh;
 }
 .filter{
   display: flex;
-  justify-content:flex-start;
-  flex-direction: row;
+  justify-content:space-between;
+  flex-direction:row;
   margin-bottom: 10px;
+  align-items: center;
+}
+#cerca{
+  width: 30vw;
+  height:100%; 
+  padding: 12px 10px;
+  border-radius: 10px;
+  border: 1px solid #FF9F1C;
+  font-size: 1rem;
+  color: #FF9F1C;
+  background-color: #262626;
 }
 
 @media screen and (max-width: 1500px) {
@@ -169,11 +187,11 @@ margin-bottom: 10vh;
   <div class="filter">
     <div style="margin-right: 50px;">
     <OrderBy/></div><div>
-    <SelectGenere/></div>
-  </div>
-    <div>
-      <input type="text" placeholder="Cerca..." bind:value={ricerca}/>
+      <input type="text" id="cerca" placeholder="Cerca..." bind:value={ricerca}/>
     </div>
+    <div style="margin-right: 20px;"><SelectGenere/></div>
+  </div>
+    
   
     {#if $store.array == undefined}
     <div style="height: 70vh; overflow:hidden">

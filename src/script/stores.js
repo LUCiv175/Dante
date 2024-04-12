@@ -5,7 +5,7 @@ const newStore = {
     r: "",
     type: 0,
     s: 0,
-    filter: []
+    filter: [],
 }
 
 function createStore() {
