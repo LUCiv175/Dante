@@ -1,8 +1,15 @@
 <script>
+  import { store } from "../script/stores";
+
   export let titolo;
   export let autore;
   export let img;
   export let id;
+  let showInfo = () => {
+    $store.info = id;
+  }
+
+
  
 </script>
 <style>
@@ -19,6 +26,7 @@ body {
   background: #191c29;
 }
 .card {
+  cursor: pointer;
   width: 15rem;
   height: 22.5rem;
   position: relative;
@@ -209,8 +217,8 @@ body {
     }
 }
 </style>
-<div class="grid-item">
-    <div class="card">
+<div class="grid-item" >
+    <div class="card" on:click={showInfo}>
       <div class="wrapper">
         <img src={img} class="cover-image" />
       </div>

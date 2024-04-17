@@ -50,7 +50,7 @@
         
     .dropdown input{
         position: relative;
-        margin-left: 10px;
+        margin-left: 1vw;
         
         top: 0;
         left: 0;
@@ -65,7 +65,7 @@
         border-radius: 10px;
     }
     .dropdown .option{
-        margin-left: 10px;
+        margin-left: 1vw;
         position: absolute;
         top: 70px;
         width: 100%;
@@ -75,7 +75,7 @@
         border-radius: 10px;
         overflow: hidden;
         opacity: 0;
-        z-index: 1000;
+        z-index: 0;
         -webkit-transition: all 0.3s ease-out;  /* Chrome 1-25, Safari 3.2+ */
         -moz-transition: all 0.3s ease-out;  /* Firefox 4-15 */
         -o-transition: all 0.3s ease-out;  /* Opera 10.50–12.00 */
@@ -84,6 +84,7 @@
 
     .dropdown.active .option{
         opacity: 1;
+        z-index: 1000000;
         -webkit-transition: all 0.3s ease-out;  /* Chrome 1-25, Safari 3.2+ */
         -moz-transition: all 0.3s ease-out;  /* Firefox 4-15 */
         -o-transition: all 0.3s ease-out;  /* Opera 10.50–12.00 */
@@ -100,6 +101,12 @@
         background: #FF9F1C;
         color: #262626;
         transition: 0.2s;
+    }
+
+    @media (max-width:950px){
+        .dropdown{
+            display: none;
+        }
     }
 
 

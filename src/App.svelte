@@ -4,6 +4,7 @@ import Dante from "./lib/Dante.svelte";
 import Home from "./lib/Home.svelte";
 import List from "./lib/list.svelte";
   import {store} from "./script/stores.js";
+  import Autore from "./lib/Autore.svelte";
 
   $: valore = $store.val;
   //$: valore = 2
@@ -15,8 +16,9 @@ import List from "./lib/list.svelte";
   :global(body){
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     box-sizing: border-box;
-    background-color: #E2E8CE;
+    background-color: #262626;
   }
 </style>
 
@@ -28,4 +30,8 @@ import List from "./lib/list.svelte";
 <Chat/>
 {:else if valore==3}
 <List/>
+{:else if valore==4}
+ <Autore/>
+{:else}
+  <h1>Errore</h1>
 {/if}

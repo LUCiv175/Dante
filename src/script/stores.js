@@ -6,6 +6,8 @@ const newStore = {
     type: 0,
     s: 0,
     filter: [],
+    info: -1,
+    autore: -1,
 }
 
 function createStore() {

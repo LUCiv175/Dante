@@ -66,19 +66,15 @@
   /* Hero Section Styles */
   .hero {
     position: relative;
-    height: 100%;
+    height: 100vh;
     display: flex;
-    justify-content: center;
     color: #fff;
     text-align: center;
     padding: 0 20px;
     flex-direction: column;
+    background-color: #E2E8CE;
   }
   
-  .hero-content {
-    
-    margin: auto;
-  }
   
   .hero img {
     height: 27vh;

@@ -85,15 +85,16 @@
       /* options with disabled key set to true (see props above) */
     }
     
-    
   </style>
-  {#if generi.length > 0}
+  {#if generi.length > 0 && window.screen.width > 950}
+  
   <MultiSelect id="Generi" options={nomi} placeholder="Filtra per Genere" style={inputStyle} on:change={(event) => {
-    event.detail.type
     event.detail.option
     if (event.detail.type === 'add') {
       for (let i = 0; i < id.length; i++) {
+        
         if (nomi[i] === event.detail.option) {
+          
           filter.push(id[i]);
           $store.filter = filter;
           $store.s = 1;
@@ -105,6 +106,7 @@
           filter.splice(filter.indexOf(id[i]), 1);
           $store.filter = filter;
           $store.s = 1;
+          
         }
       }
     }

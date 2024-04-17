@@ -4,10 +4,15 @@
   import Loading from "./Loading.svelte";
   import OrderBy from "./OrderBy.svelte";
   import SelectGenere from "./SelectGenere.svelte";
-
+  import Info from "./info.svelte";
+  import { slide, blur} from "svelte/transition";
+  $: inf = $store.info;
   $: elenco = [];
   $: ricerca = "";
   $: t = $store.type;
+  export const turnBack = () => {
+    $store.val = 0;
+  }
   let final = false
   $:if(ricerca != "") {
     final = true
@@ -22,15 +27,15 @@
   let filter = [];
   //$:console.log(t)
   //$: console.log($store.array)
-  $: if(t!=l || p==0){
+  $: if(t!=l || p==0  && $store.info==-1){
     fetchQuestions()
     l = t;
     p = 1;
   }
-  $: if($store.s == 1){
-    fetchQuestions()
+  $: if($store.s == 1  && $store.info==-1){
     filter = $store.filter;
     $store.s = 0;
+    fetchQuestions()
   }
   let currentError = null;
   const fetchQuestions = () =>{
@@ -88,15 +93,25 @@
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
     }
- 
+    
+    .back{
+        position: absolute;
+        width: 70px;
+        top: 0;
+        left: 0;
+        margin: 2%;
+        cursor: pointer;
+        filter: brightness(1000%);
+        z-index: 1000;
+      }
   .hero {
   position: relative;
   height: 100%;
+  
   display: flex;
-  justify-content: center;
   color: #fff;
   text-align: center;
- 
+
   width: 100%;
   flex-direction: column;
   background-color: #262626;
@@ -158,12 +173,29 @@ margin-bottom: 10vh;
   }
   .hero img {
     height: 20vh;
+    margin-top: 2vh;
   }
   .hero p {
     font-size: 2rem;
     margin-bottom: 10vh;
   }
 }
+@media screen and (max-width:950px) {
+    #cerca{
+      width: 90vw;
+    }
+    .filter{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .back{
+          width: 50px;
+          margin: 5%;
+      }
+    
+  }
   @media screen and (max-width: 300px) {
     .cards{
       display: grid;
@@ -173,15 +205,19 @@ margin-bottom: 10vh;
     }
     .hero img {
       height: 15vh;
+      margin-top: 2vh;
     }
     .hero p {
       font-size: 1rem;
       margin-bottom: 10vh;}
-    }    
+  }    
 </style>
-
-
-<div class="hero">
+{#if inf!=-1}
+  <Info id={inf}/>
+  {/if}
+  <img src="back.png" alt="back" class="back" on:click={turnBack} in:slide={{delay:200, duration:350}} out:slide={{duration:350}}>
+<div class="hero" in:blur={{delay:550, duration:350}} out:blur={{duration:350}}>
+  
   <img src="dante logo 2.png" alt="logo">
   <p>Catalogo</p>
   <div class="filter">
@@ -199,9 +235,10 @@ margin-bottom: 10vh;
     {:else}<div class="cards">
     {#each $store.array as libro}
     
-      <Card id={libro.id} autore={libro.nome + " " + libro.cognome} titolo={libro.titolo} img={libro.copertina}/>
+      <Card id={libro.id} autore={libro.nome + " " + libro.cognome} titolo={libro.titolo} img={libro.copertina} on:click/>
     {/each}</div>{/if}
     {#if currentError}
 		<p class="error-message">{currentError}</p>
 	{/if}
 </div>
+
