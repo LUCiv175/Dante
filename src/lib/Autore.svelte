@@ -11,6 +11,8 @@
     $: infoAutore = [];
     export const turnBack = () => {
     $store.val = 3;
+    $store.autore = -1;
+    $store.info = -1;
   }
     let id = $store.autore;
     let currentError = null;
@@ -132,8 +134,8 @@ hr{
   margin-left: 2vw;
   margin-right: 4vw;
   text-align: justify;
-  font-size: 1.2rem;
-  line-height: 2.5rem;
+  font-size: 1rem;
+  line-height: 1.7rem;
   overflow-y: auto;
   color: #FF9F1C;
 }

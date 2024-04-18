@@ -12,6 +12,7 @@
   $: t = $store.type;
   export const turnBack = () => {
     $store.val = 0;
+    $store.info = -1;
   }
   let final = false
   $:if(ricerca != "") {

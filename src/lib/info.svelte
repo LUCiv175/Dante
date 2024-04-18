@@ -3,7 +3,11 @@
   import { store } from "../script/stores";
   import {blur, slide} from "svelte/transition";
 
-  
+  const parla = () => {
+    $store.val = 2;
+    $store.info = -1;
+    $store.chat = "Cosa ne pensi del libro " + info[0].titolo + " scritto da " + info[0].nome + " " + info[0].cognome + "?";
+  }
 
     export let id;
     let closed = () => {
@@ -119,7 +123,7 @@ label{
   opacity: 0;
 }
 .close{
-  margin: 60px 0 0 -20px;
+  margin: 60px 0 0 5px;
   position: absolute;
 }
 
@@ -233,6 +237,29 @@ h2:hover{
   background-color: #262626d5;
   color: #E2E8CE;
   
+}
+
+.vai{
+  color: #262626;
+    background-color: #FF9F1C;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    border-radius: 10px;
+    padding: 0.7rem 1.7rem;
+    margin-bottom: 2vh;
+    transition: 0.4s;
+}
+.vai:hover{
+  background-color: transparent;
+    color: #262626;
+    border: 2px solid #262626;
+    scale: 1.1;
 }
 
 @media screen and (max-width: 800px){
@@ -352,7 +379,7 @@ h2:hover{
       </div></div>
       <div class="anno">
         {#if item.anno == item.annoInizio}
-        <h3>Anno di Pubblicazione: {item.anno}</h3>
+        <h3>Anno di Pubblicazione:</h3><h3 style="color: #262626;">{item.anno}</h3>
         {:else}
         <h3>Anno di Pubblicazione:</h3><h4>Da {item.annoInizio} a {item.anno}</h4>
         {/if}
@@ -365,6 +392,7 @@ h2:hover{
         {/each}
       </div>
     </div></div>
+    <div style="display: flex; justify-content:center; align-items:center"><button class="vai" on:click={parla}>Parlane con me</button></div>
     <div class="descrizione">
       <h3>Descrizione:</h3>
       <p>{item.descrizione}</p>

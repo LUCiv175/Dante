@@ -19,13 +19,18 @@
   const load = async () => {
     const thread = await openai.beta.threads.create();
     thid = thread.id
-    mymessage = $store.request;
+    if($store.chat != "") mymessage = $store.chat;
+    else mymessage = $store.request;
     btnsend3();
 
   }
 
   export const turnBack = () => {
-    $store.val = 1;
+    if($store.chat != ""){
+      $store.val = 0;
+      $store.chat = "";
+    }
+    else $store.val = 1;
   }
 
   export const btnsend3 = async () => {
@@ -180,9 +185,9 @@ allchat = [...allchat, { role: 'bot', text: chatbotMessage }];
     padding: 0 20px;
     flex-direction: column;
     background-color: #1e1e1eea;
-    margin-left: 25vw;
-    margin-right: 25vw;
-    margin-top: 25vh;
+    margin-left: 10vw;
+    margin-top: 5vh;
+    margin-right: 10vw;
     border-radius: 40px;
     margin-bottom: 2vh;
     

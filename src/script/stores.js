@@ -8,6 +8,7 @@ const newStore = {
     filter: [],
     info: -1,
     autore: -1,
+    chat: "",
 }
 
 function createStore() {
