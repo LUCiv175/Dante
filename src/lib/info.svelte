@@ -358,6 +358,14 @@ h2:hover{
       width: 2vw;
     }
 }
+.descrizione {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+.descrizione::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
 
 </style>
 <div class="info" in:slide={{duration:350}} out:slide={{duration:350}}>
